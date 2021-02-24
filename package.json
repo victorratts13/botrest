@@ -1,0 +1,35 @@
+{
+  "name": "botrest",
+  "version": "1.0.0",
+  "description": "rest api for development bots",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorratts13/botrest.git"
+  },
+  "keywords": [
+    "axios",
+    "rest",
+    "rest",
+    "api",
+    "bot",
+    "bot-dev",
+    "rest",
+    "endpoints"
+  ],
+  "author": "Victor Ratts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victorratts13/botrest/issues"
+  },
+  "homepage": "https://github.com/victorratts13/botrest#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "axios-cookiejar-support": "^1.0.1",
+    "qs": "^6.9.6",
+    "tough-cookie": "^4.0.0"
+  }
+}
