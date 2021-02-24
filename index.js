@@ -63,7 +63,7 @@ class botrest {
                 "version": apiCookie.version,
                 "storeType": apiCookie.storeType,
                 "rejectPublicSuffixes": apiCookie.rejectPublicSuffixes,
-                "cookie": session.cookie
+                "cookie": apiCookie.cookie
             }
             var api = this.api
             var qr = qs.stringify(query);
@@ -98,7 +98,7 @@ class botrest {
                 "version": apiCookie.version,
                 "storeType": apiCookie.storeType,
                 "rejectPublicSuffixes": apiCookie.rejectPublicSuffixes,
-                "cookie": session.cookie
+                "cookie": apiCookie.cookie
             }
             var api = this.api
             var qr = qs.stringify(query);
