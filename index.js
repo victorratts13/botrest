@@ -84,6 +84,7 @@ class botrest {
             var qr = qs.stringify(query);
             //var bd = body;
             var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
             api.post(uri, body, apiCookie).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
@@ -107,6 +108,7 @@ class botrest {
             var qr = qs.stringify(query);
             //var bd = body;
             var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
             api.post(uri, body, conf).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
