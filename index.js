@@ -81,7 +81,7 @@ class botrest {
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
-            api.get(`${endpoint}?${qr}`, body, apiCookie).then(rest => {
+            api.post(`${endpoint}?${qr}`, body, apiCookie).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
                 return reject(e)
@@ -103,7 +103,7 @@ class botrest {
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
-            api.get(`${endpoint}?${qr}`, body, conf).then(rest => {
+            api.post(`${endpoint}?${qr}`, body, conf).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
                 return reject(e)
