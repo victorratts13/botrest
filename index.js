@@ -46,7 +46,7 @@ class botrest {
         return new Promise((resolve, reject) => {
             var api = this.api
             var qr = qs.stringify(query);
-            var uri = (qr == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
             api.get(uri, apiCookie).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
@@ -68,7 +68,7 @@ class botrest {
             }
             var api = this.api
             var qr = qs.stringify(query);
-            var uri = (qr == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
             api.get(uri, conf).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
@@ -83,7 +83,7 @@ class botrest {
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
-            var uri = (qr == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
             api.post(uri, body, apiCookie).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
@@ -106,7 +106,7 @@ class botrest {
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
-            var uri = (qr == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
             api.post(uri, body, conf).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
