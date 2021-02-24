@@ -54,11 +54,11 @@ class botrest {
         })
     }
 
-    getFormData(endpoint, query = {}, header = {}) {
+    getFormData(endpoint, query = {}, header = {}, encoding) {
         return new Promise((resolve, reject) => {
             var conf = {
                 "headers": (header == null ? headers : header),
-                "responseEncoding": 'utf8',
+                "responseEncoding": (encoding == null ? 'utf8' : encoding),
                 "transformResponse": [data => data],
                 "version": apiCookie.version,
                 "storeType": apiCookie.storeType,
@@ -89,11 +89,11 @@ class botrest {
         })
     }
 
-    postFormData(endpoint, body = {}, query = {}, header = {}) {
+    postFormData(endpoint, body = {}, query = {}, header = {}, encoding) {
         return new Promise((resolve, reject) => {
             var conf = {
                 "headers": (header == null ? headers : header),
-                "responseEncoding": 'utf8',
+                "responseEncoding": (encoding == null ? 'utf8' : encoding),
                 "transformResponse": [data => data],
                 "version": apiCookie.version,
                 "storeType": apiCookie.storeType,
