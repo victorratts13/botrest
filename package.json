@@ -1,6 +1,6 @@
 {
   "name": "botrest",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "rest api for development bots",
   "main": "index.js",
   "scripts": {

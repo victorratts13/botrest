@@ -42,29 +42,17 @@ class botrest {
         this.api = axios.create(this.axiosConfig);
     }
 
-    get(endpoint, query = {}) {
+    get(endpoint, query = {}, header = {}) {
         return new Promise((resolve, reject) => {
-            var api = this.api
-            var qr = qs.stringify(query);
-            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
-            api.get(uri, apiCookie).then(rest => {
-                return resolve(rest.data)
-            }).catch(e => {
-                return reject(e)
-            })
-        })
-    }
-
-    getFormData(endpoint, query = {}, header = {}, encoding) {
-        return new Promise((resolve, reject) => {
+            axios.defaults.headers.post['Content-Type'] = (header["Content-type"] !== undefined ? header["Content-type"] : 'application/x-www-form-urlencoded');
             var conf = {
                 "headers": (header == null ? headers : header),
-                "responseEncoding": (encoding == null ? 'utf8' : encoding),
-                "transformResponse": [data => data],
-                "version": apiCookie.version,
-                "storeType": apiCookie.storeType,
-                "rejectPublicSuffixes": apiCookie.rejectPublicSuffixes,
-                "cookie": apiCookie.cookie
+                //"responseEncoding": (encoding == null ? 'utf8' : encoding),
+                //"transformResponse": [data => data],
+                "version": apiCookie.jar.version,
+                "storeType": apiCookie.jar.storeType,
+                "rejectPublicSuffixes": apiCookie.jar.rejectPublicSuffixes,
+                "cookie": apiCookie.jar.cookie
             }
             var api = this.api
             var qr = qs.stringify(query);
@@ -77,14 +65,46 @@ class botrest {
         })
     }
 
-    post(endpoint, body = {}, query = {}) {
+    getFormData(endpoint, query = {}, header = {}, encoding) {
         return new Promise((resolve, reject) => {
+            axios.defaults.headers.post['Content-Type'] = (header["Content-type"] !== undefined ? header["Content-type"] : 'application/x-www-form-urlencoded');
+            var conf = {
+                "headers": (header == null ? headers : header),
+                "responseEncoding": (encoding == null ? 'utf8' : encoding),
+                "transformResponse": [data => data],
+                "version": apiCookie.jar.version,
+                "storeType": apiCookie.jar.storeType,
+                "rejectPublicSuffixes": apiCookie.jar.rejectPublicSuffixes,
+                "cookie": apiCookie.jar.cookie
+            }
+            var api = this.api
+            var qr = qs.stringify(query);
+            var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
+            api.get(uri, conf).then(rest => {
+                return resolve(rest.data)
+            }).catch(e => {
+                return reject(e)
+            })
+        })
+    }
 
+    post(endpoint, body = {}, query = {}, header = {}) {
+        return new Promise((resolve, reject) => {
+            axios.defaults.headers.post['Content-Type'] = (header["Content-type"] !== undefined ? header["Content-type"] : 'application/x-www-form-urlencoded');
+            var conf = {
+                "headers": (header == null ? headers : header),
+                //"responseEncoding": (encoding == null ? 'utf8' : encoding),
+                //"transformResponse": [data => data],
+                "version": apiCookie.jar.version,
+                "storeType": apiCookie.jar.storeType,
+                "rejectPublicSuffixes": apiCookie.jar.rejectPublicSuffixes,
+                "cookie": apiCookie.jar.cookie
+            }
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
             var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
-            conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
+            //conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
             api.post(uri, body, apiCookie).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
@@ -95,20 +115,22 @@ class botrest {
 
     postFormData(endpoint, body = {}, query = {}, header = {}, encoding) {
         return new Promise((resolve, reject) => {
+            axios.defaults.headers.post['Content-Type'] = (header["Content-type"] !== undefined ? header["Content-type"] : 'application/x-www-form-urlencoded');
             var conf = {
                 "headers": (header == null ? headers : header),
                 "responseEncoding": (encoding == null ? 'utf8' : encoding),
                 "transformResponse": [data => data],
-                "version": apiCookie.version,
-                "storeType": apiCookie.storeType,
-                "rejectPublicSuffixes": apiCookie.rejectPublicSuffixes,
-                "cookie": apiCookie.cookie
+                "version": apiCookie.jar.version,
+                "storeType": apiCookie.jar.storeType,
+                "rejectPublicSuffixes": apiCookie.jar.rejectPublicSuffixes,
+                "cookie": apiCookie.jar.cookie
             }
             var api = this.api
             var qr = qs.stringify(query);
             //var bd = body;
             var uri = (query == null ? `${endpoint}` : `${endpoint}?${qr}`)
-            conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
+            //conf.headers["Content-type"] = (header["Content-type"] == undefined ? conf.headers["Content-type"] : header["Content-type"] )
+            //console.log(JSON.stringify(apiCookie))
             api.post(uri, body, conf).then(rest => {
                 return resolve(rest.data)
             }).catch(e => {
